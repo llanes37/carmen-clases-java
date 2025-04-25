@@ -176,6 +176,7 @@
       * Modifica el ejemplo para insertar otros campos o experimenta usando UPDATE/DELETE.
       */
      public static void insertarRegistro(Scanner scanner) {
+       
          if (conexion == null) { // Verifica si hay conexión activa
              System.out.println("❌ Conecta a la base de datos primero (opción 1).");
              return;

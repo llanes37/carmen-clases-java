@@ -167,7 +167,19 @@
              System.out.println("❌ Error al leer el fichero: " + e.getMessage());
          }
      }
- 
+   // ===================================================
+    // 📌 APARTE: ¿Qué es StringBuilder?
+    // ===================================================
+    /*
+     * StringBuilder permite construir textos largos concatenando partes
+     * sin crear muchos objetos intermedios.
+     *
+     * Ejemplo:
+     *
+     * StringBuilder sb = new StringBuilder();
+     * sb.append("Nombre: ").append(nombre).append(" Edad: ").append(edad);
+     * System.out.println(sb.toString());
+     */
      // ===================================================
      // 📌 EJERCICIO FINAL (para la clase)
      // ===================================================
