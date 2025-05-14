@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clase Práctica HTML Completa</title>
+  <!--
+    📚 Práctica Completa de HTML
+    Autor: Joaquín Rodríguez Llanes
+    Fecha: 23/04/2025
+
+    Objetivo:
+    - Repasar la estructura semántica de una página HTML
+    - Conocer y practicar etiquetas fundamentales
+    - Entender dónde y cómo enriquecer cada sección
+    - Dejar preparado para mejorar y personalizar
+  -->
+</head>
+<body>
+
+  <!-- ================================================
+       HEADER: CABECERA PRINCIPAL 
+       Semántica: <header> agrupa elementos introductorios
+       Practica: Cambia el texto del título y añade un logo con <img>
+  ================================================ -->
+  <header>
+    <!-- Título principal de la página -->
+    <h1>🌐 Mi Página Web de Práctica</h1>
+    <!-- Subtítulo o eslogan -->
+    <p>Aprendiendo HTML paso a paso con Joaquín</p>
+    <!-- Practica: Inserta aquí un logotipo usando <img src="ruta" alt="Logo"> -->
+  </header>
+
+  <!-- ================================================
+       NAV: NAVEGACIÓN PRINCIPAL
+       Semántica: <nav> para menús de navegación
+       Practica: Añade más enlaces, prueba enlaces relativos y absolutos
+  ================================================ -->
+  <nav>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <!-- Practica: Aplica aria-label al <nav> para accesibilidad -->
+  </nav>
+
+  <!-- ================================================
+       MAIN: CONTENIDO PRINCIPAL
+       Semántica: <main> solo un bloque principal por página
+  ================================================ -->
+  <main>
+
+    <!-- -----------------------------
+         SECCIÓN: Sobre mí
+         ID para anclas y estilo
+         Practica: Cambia <section> por <article> y observa la semántica
+    ------------------------------ -->
+    <section id="sobre-mi">
+      <h2>👤 Sobre mí</h2>
+      <p>
+        ¡Hola! Soy <strong>Nombre del Alumno</strong>, estudiante de programación.
+        En esta sección escribes tu presentación personal.
+      </p>
+      <!-- Practica: Añade un enlace a tu perfil de GitHub con <a> -->
+    </section>
+
+    <!-- -----------------------------
+         SECCIÓN: Habilidades
+         Demuestra uso de listas ordenadas y desordenadas
+         Practica: Cambia el orden de la lista y añade iconos con emoji o <i>
+    ------------------------------ -->
+    <section id="habilidades">
+      <h2>💪 Mis Habilidades</h2>
+      <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ol>
+      <ul>
+        <li>Visual Studio Code</li>
+        <li>Live Server</li>
+        <li>Git & GitHub</li>
+      </ul>
+    </section>
+
+    <!-- -----------------------------
+         SECCIÓN: Proyectos
+         Uso de <figure> y <figcaption> para imágenes con descripción
+         Practica: Añade más <figure> con tus propias capturas
+    ------------------------------ -->
+    <section id="proyectos">
+      <h2>📂 Proyectos Destacados</h2>
+
+      <figure>
+        <img src="https://via.placeholder.com/300x200" alt="Proyecto 1">
+        <figcaption>Proyecto 1: Página de Portafolio</figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://via.placeholder.com/300x200" alt="Proyecto 2">
+        <figcaption>Proyecto 2: App de Tareas</figcaption>
+      </figure>
+
+      <!-- Practica: Experimenta cambiando el tamaño de las imágenes -->
+    </section>
+
+    <!-- -----------------------------
+         SECCIÓN: Galería
+         Práctica de <picture> y <source> para imágenes responsivas
+         Practica: Sustituye por <picture> con diferentes resoluciones
+    ------------------------------ -->
+    <section id="galeria">
+      <h2>📸 Galería de Imágenes</h2>
+      <picture>
+        <source media="(max-width: 600px)" srcset="https://via.placeholder.com/200">
+        <img src="https://via.placeholder.com/600" alt="Imagen responsiva">
+      </picture>
+    </section>
+
+    <!-- -----------------------------
+         SECCIÓN: Tabla de horarios
+         Tablas: <table>, <thead>, <tbody>, <tr>, <th>, <td>
+         Practica: Añade una columna extra con comentarios
+    ------------------------------ -->
+    <section id="horario">
+      <h2>📊 Mi Horario de Estudio</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Actividad</th>
+            <th>Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lunes</td>
+            <td>Repaso de Java</td>
+            <td>1.5h</td>
+          </tr>
+          <tr>
+            <td>Miércoles</td>
+            <td>Ejercicios de HTML</td>
+            <td>2h</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- -----------------------------
+         SECCIÓN: Formulario de contacto
+         Formularios: <form>, <label>, <input>, <textarea>, <button>
+         Practica: Cambia el método a POST y la acción a tu servidor de prueba
+    ------------------------------ -->
+    <section id="contacto">
+      <h2>📬 Contáctame</h2>
+      <form action="#" method="get">
+        <div>
+          <label for="nombre">Nombre:</label><br>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+        </div>
+        <div>
+          <label for="email">Correo:</label><br>
+          <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com">
+        </div>
+        <div>
+          <label for="mensaje">Mensaje:</label><br>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+        </div>
+        <!-- Botón de envío -->
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ================================================
+       FOOTER: PIE DE PÁGINA
+       Semántica: <footer> con información legal y enlaces secundarios
+       Practica: Añade enlaces a redes sociales con iconos
+  ================================================ -->
+  <footer>
+    <p>© 2025 Página creada por Nombre del Alumno</p>
+    <p><a href="#inicio">Volver arriba</a></p>
+  </footer>
+
+  <!-- ================================================
+       MEJORAS Y EXTENSIONES
+       Sección con ideas para profundizar
+  ================================================ -->
+  <!--
+    🛠️ Mejoras adicionales que puedes aplicar:
+    1. Añadir CSS externo para estilos (colores, tipografías, diseño responsivo).
+    2. Integrar Bootstrap o Tailwind para componentes predefinidos.
+    3. Usar JavaScript para validar el formulario antes de enviar.
+    4. Agregar metaetiquetas SEO (description, keywords).
+    5. Implementar etiquetas ARIA para accesibilidad.
+    6. Añadir un favicon y mejorar la cabecera (<link rel="icon">).
+    7. Dividir contenido en <div class="container"> y secciones con clases para CSS.
+    8. Incluir un menú hamburguesa para móvil con JavaScript.
+    9. Usar librerías de iconos (FontAwesome, Material Icons).
+    10. Practicar con <video> y <audio> para medios integrados.
+  -->
+
+</body>
+</html>
