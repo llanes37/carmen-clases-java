@@ -84,13 +84,10 @@
         // 1) Leer longitud del texto ingresado
         const len = this.value.length;
         // 2) If par → b1 amarillo, b2 gris; si impar → b2 amarillo, b1 gris
-        if (len % 2 === 0) {
+        if (i2.value == "amarillo") {
           b1.style.background = 'yellow';
-          b2.style.background = 'gray';
-        } else {
-          b1.style.background = 'gray';
           b2.style.background = 'yellow';
-        }
+        } 
       };
     </script>
   </div>
@@ -116,10 +113,10 @@
 
       ok3.onclick = function() {
         // 1) Leer valor ingresado
-        const n = parseInt(i3.value, 10);
+        
         // 2) Si n > 1 → mostrar y poner fondo verde; sino → alerta
-        if (n > 1) {
-          c3.textContent = n;
+        if (i3.value > 1) {
+          c3.textContent = i3.value;
           c3.style.background = 'lightgreen';
         } else {
           alert('Introduce un número mayor que 1');
@@ -127,8 +124,8 @@
       };
 
       c3.onclick = function() {
-        // 3) Leer valor actual y decrementar si > 0
-        let m = parseInt(this.textContent, 10);
+        
+        
         if (m > 0) {
           m--;
           this.textContent = m;

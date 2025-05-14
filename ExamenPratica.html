@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyecto JS: 3 Secciones – Resueltos con Comentarios Línea a Línea (sin parse)</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .ejercicio { border:1px solid #ccc; padding:15px; margin-bottom:30px; }
+    .titulo { margin-top:0; }
+    p.enunciado { background:#f0f8ff; padding:10px; border-left:4px solid #007acc; }
+    .celda, .bombilla, #contador { display:inline-block; cursor:pointer; text-align:center; margin:5px; }
+    .celda { width:50px; height:50px; line-height:50px; border:1px solid #333; font-size:1.5rem; }
+    .bombilla { width:20px; height:20px; border-radius:50%; border:1px solid #333; }
+    #contador { width:50px; height:50px; line-height:50px; border:1px solid #333; }
+    input, button { margin:5px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Proyecto de Práctica JavaScript</h1>
+
+  <!-- SECCIÓN 1: CELDAS CICLABLES -->
+  <section id="sec1">
+    <h2>Sección 1: Celdas que ciclan</h2>
+
+    <!-- 1.1 Resuelto -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 1.1 (Resuelto)</h3>
+      <p class="enunciado">
+        Al pinchar cada celda, cicla su contenido: <strong>vacío → 🔷 → ❤️ → vacío</strong>.  
+        Debajo hay contadores de rombos y corazones, y si las 3 celdas coinciden, aparece “FULL”.
+      </p>
+      <!-- HTML: tres celdas con estado inicial "0" -->
+      <div class="celda" data-s="0"></div>
+      <div class="celda" data-s="0"></div>
+      <div class="celda" data-s="0"></div>
+      <p>🔷: <span id="d11">0</span>   ❤️: <span id="h11">0</span></p>
+
+      <script>
+        // 1) Seleccionamos las tres celdas de este ejercicio
+        const c11 = document.querySelectorAll('#sec1 .ejercicio:nth-of-type(1) .celda');
+        // 2) Recorremos cada celda para asignar el evento de clic
+        c11.forEach(c => c.onclick = function() {
+          // 3) Leemos estado actual desde atributo data-s (cadena "0","1" o "2")
+          let s = this.dataset.s;
+          // 4) Sumamos uno (con resta truco evita parse) y hacemos módulo 3 para ciclar
+          s = (s - -1) % 3;               // "0"- -1 -> 1, "1"- -1 -> 2, "2"- -1 -> 3%3 -> 0
+          // 5) Guardamos el nuevo estado en data-s (se convierte a cadena)
+          this.dataset.s = s;
+          // 6) Según el estado, mostramos el símbolo en el interior
+          if (s === '1') this.textContent = '🔷';  // estado 1 → rombo
+          else if (s === '2') this.textContent = '❤️'; // estado 2 → corazón
+          else this.textContent = '';              // estado 0 → vacío
+          // 7) Recuento de rombos y corazones
+          let d = 0, h = 0;
+          c11.forEach(x => {
+            if (x.dataset.s === '1') d++;  // cuenta rombos
+            if (x.dataset.s === '2') h++;  // cuenta corazones
+          });
+          // 8) Actualizamos los contadores en la pantalla
+          document.getElementById('d11').textContent = d;
+          document.getElementById('h11').textContent = h;
+          // 9) Si las tres celdas coinciden en rombo o corazón → alerta
+          if (d === 3 || h === 3) alert('FULL');
+        });
+      </script>
+    </div>
+
+    <!-- 1.2 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 1.2 (Por hacer)</h3>
+      <p class="enunciado">
+        Igual que antes, pero con <strong>4 celdas</strong> y solo contabilizando rombos.  
+        Cuando haya <em>2 o más</em> rombos, muestra “MANY”.
+      </p>
+      <!-- Seis celdas con data-s -->
+      <div class="celda" data-s="0"></div>
+      <div class="celda" data-s="0"></div>
+      <div class="celda" data-s="0"></div>
+      <div class="celda" data-s="0"></div>
+      <p>🔷: <span id="d12">0</span></p>
+      <script>
+        // TODO: implementar como en 1.1, pero:
+        // - Seleccionar las 4 celdas
+        // - Ciclar data-s y símbolos
+        // - Contar solo rombos (state==='1')
+        // - Actualizar #d12
+        // - Si ≥2 → alert("MANY")
+      </script>
+    </div>
+
+    <!-- 1.3 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 1.3 (Por hacer)</h3>
+      <p class="enunciado">
+        Tres celdas que cambian fondo: <strong>blanco ↔ amarillo</strong> al clic.  
+        Muestra cuántas están amarillas; si las 3 lo están, muestra “ALL ON”.
+      </p>
+      <div class="celda"></div>
+      <div class="celda"></div>
+      <div class="celda"></div>
+      <p>Amarillas: <span id="d13">0</span></p>
+      <script>
+        // TODO:
+        // - Seleccionar las 3 celdas
+        // - Al clic: alternar classList.toggle('on') 
+        // - .on en CSS → background: yellow
+        // - Contar cuántas tienen class 'on'
+        // - Actualizar #d13
+        // - Si es 3 → alert("ALL ON")
+      </script>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: BOMBILLAS PAR/IMPAR -->
+  <section id="sec2">
+    <h2>Sección 2: Bombillas par/impar</h2>
+
+    <!-- 2.1 Resuelto -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 2.1 (Resuelto)</h3>
+      <p class="enunciado">
+        Dos bombillas. Al escribir:
+        longitud <strong>par</strong> → izquierda amarilla, derecha gris;  
+        longitud <strong>impar</strong> → inverso.
+      </p>
+      <div id="b21" class="bombilla" style="background:yellow"></div>
+      <div id="b22" class="bombilla" style="background:gray"></div>
+      <input id="i21" placeholder="Escribe texto">
+      <script>
+        // 1) Capturamos referencias a los elementos
+        const b21 = document.getElementById('b21'),
+              b22 = document.getElementById('b22'),
+              i21 = document.getElementById('i21');
+        // 2) Cada vez que cambia el valor del input...
+        i21.oninput = function() {
+          // 3) this.value.length → número de caracteres
+          const len = this.value.length;
+          // 4) Si len %2===0 → even, si no → odd
+          const even = len % 2 === 0;
+          // 5) Actualizamos colores directly sin parse
+          b21.style.background = even ? 'yellow' : 'gray';
+          b22.style.background = even ? 'gray'   : 'yellow';
+        };
+      </script>
+    </div>
+
+    <!-- 2.2 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 2.2 (Por hacer)</h3>
+      <p class="enunciado">
+        Tres bombillas. Al escribir:
+        - Si longitud divisible por 3 → primera ON, otras OFF.  
+        - Si por 5 → segunda ON, otras OFF.  
+        - Sino → tercera ON.
+      </p>
+      <div class="bombilla"></div>
+      <div class="bombilla"></div>
+      <div class="bombilla"></div>
+      <input id="i22" placeholder="Texto">
+      <script>
+        // TODO:
+        // - Capturar las 3 bombillas y el input
+        // - oninput → let len = this.value.length
+        // - if len%3===0 → bomb1 on, bomb2&3 off
+        // - else if len%5===0 → bomb2 on, bomb1&3 off
+        // - else → bomb3 on, bomb1&2 off
+      </script>
+    </div>
+
+    <!-- 2.3 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 2.3 (Por hacer)</h3>
+      <p class="enunciado">
+        Dos bombillas y un botón “Check”. Al pulsar:
+        - Si input.value.length > 10 → ambas ON.  
+        - Sino → ambas OFF.
+      </p>
+      <div class="bombilla"></div>
+      <div class="bombilla"></div>
+      <input id="i23" placeholder="Texto">
+      <button id="btn23">Check</button>
+      <script>
+        // TODO:
+        // - Capturar bombillas, input y botón
+        // - btn23.onclick → let len = i23.value.length
+        // - if len>10 → bomb1&2 on (bg=yellow), else bg=gray
+      </script>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: CONTADOR REGRESIVO -->
+  <section id="sec3">
+    <h2>Sección 3: Contador regresivo</h2>
+
+    <!-- 3.1 Resuelto -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 3.1 (Resuelto)</h3>
+      <p class="enunciado">
+        Campo numérico y botón OK. Si input.value > 1 → aparece en cuadrado verde.  
+        Cada clic en el cuadrado resta 1; al llegar a 0 → cuadrado rojo.
+      </p>
+      <input id="i31" type="number" placeholder="Número >1">
+      <button id="btn31">OK</button>
+      <div id="c31">0</div>
+      <script>
+        // 1) Referencias DOM
+        const btn31 = document.getElementById('btn31'),
+              i31   = document.getElementById('i31'),
+              c31   = document.getElementById('c31');
+        // 2) Al pulsar OK
+        btn31.onclick = () => {
+          // 2.1) Leemos input.value (cadena); comparado con número JS hace conversión
+          const n = i31.value;
+          // 2.2) Si n>1 → mostramos y pintamos verde; sino → alerta
+          if (n > 1) {
+            c31.textContent = n;                // asigna texto
+            c31.style.background = 'lightgreen';// cambia fondo
+          } else {
+            alert('Introduce un número mayor que 1');
+          }
+        };
+        // 3) Al clicar en el contador
+        c31.onclick = () => {
+          // 3.1) Leemos c31.textContent (cadena); la resta implícita convierte a número
+          let v = c31.textContent - 1;
+          // 3.2) Si v>=0 → actualizamos y, si llega a 0, fondo rojo
+          if (v >= 0) {
+            c31.textContent = v;
+            if (v === 0) c31.style.background = 'tomato';
+          }
+        };
+      </script>
+    </div>
+
+    <!-- 3.2 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 3.2 (Por hacer)</h3>
+      <p class="enunciado">
+        Igual que antes, pero si input.value par → cuadrado azul,  
+        si impar → cuadrado verde. Luego decrementa al clic y al 0 → rojo.
+      </p>
+      <input id="i32" type="number" placeholder="Número >1">
+      <button id="btn32">OK</button>
+      <div id="c32">0</div>
+      <script>
+        // TODO:
+        // - Capturar btn32, i32, c32
+        // - btn32.onclick: let n = i32.value; 
+        //   if n%2==0 → c32 bg='blue' else 'lightgreen'; c32.textContent=n
+        // - c32.onclick: let v=c32.textContent-1; if v>=0 update and if v==0 bg='tomato'
+      </script>
+    </div>
+
+    <!-- 3.3 Para hacer -->
+    <div class="ejercicio">
+      <h3 class="titulo">Ejercicio 3.3 (Por hacer)</h3>
+      <p class="enunciado">
+        Campo y OK. Si input.value > 5 → cuadrado gris y resta de 2 en 2  
+        al clic; sino → cuadrado naranja y resta de 1 en 1; al 0 → rojo.
+      </p>
+      <input id="i33" type="number" placeholder="Número">
+      <button id="btn33">OK</button>
+      <div id="c33">0</div>
+      <script>
+        // TODO:
+        // - Capturar btn33, i33, c33
+        // - btn33.onclick: let n=i33.value;
+        //     if n>5 → bg='gray' step=2 else bg='orange' step=1; c33.textContent=n
+        // - c33.onclick: let v=c33.textContent-step; if v>=0 update and if v==0 bg='tomato'
+      </script>
+    </div>
+  </section>
+
+</body>
+</html>
