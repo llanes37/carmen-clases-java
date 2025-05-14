@@ -223,13 +223,13 @@ function evaluarNota() {
       Usamos document.getElementById("id") para seleccionar un elemento específico y cambiar su contenido con innerText o innerHTML.
     -->
     <p id="parrafo">Este texto se puede cambiar con JavaScript.</p>
-    <button onclick="cambiarTexto()">Cambiar texto</button>
+    <button id="boton" onclick="cambiarTexto()">Cambiar texto</button>
     <script>
       // Función para cambiar el contenido del párrafo con id "parrafo"
       function cambiarTexto() {
         // document.getElementById("parrafo") selecciona el elemento y .innerText cambia su texto interno.
-        document.getElementById("parrafo").innerText = "¡Texto actualizado correctamente!";
-        document.getElementById
+        document.getElementById("boton").innerHTML = "¡Texto actualizado correctamente!";
+       
       }
     </script>
     <h3>🧪 Tu turno (Práctica)</h3>

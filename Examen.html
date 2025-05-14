@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>3 Ejercicios JavaScript Sencillos con Enunciados</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .ejercicio { margin-bottom: 40px; border: 1px solid #ccc; padding: 15px; }
+    .celda, #contador, .bombilla {
+      display: inline-block; text-align: center; cursor: pointer;
+      border: 1px solid #333; margin: 5px;
+    }
+    .celda { width:50px; height:50px; line-height:50px; font-size:1.5rem; }
+    .bombilla { width:20px; height:20px; border-radius:50%; vertical-align:middle; }
+    #contador { width:50px; height:50px; line-height:50px; margin-left:10px; }
+    h2 { margin-bottom:10px; }
+    p.enunciado { background:#f9f9f9; padding:8px; border-left:4px solid #007acc; }
+  </style>
+</head>
+<body>
+
+  <!-- EJERCICIO 1: Celdas que cambian -->
+  <div id="e1" class="ejercicio">
+    <h2>Ejercicio 1 (4 puntos)</h2>
+    <p class="enunciado">
+      Estas celdas se pueden pulsar. Cuando se pulsa una, cicla su contenido:
+      <strong>vacío → rombo (🔷) → corazón (❤️) → vacío</strong>.
+      Debajo hay contadores que muestran cuántos rombos y corazones hay.
+      Además, si las tres celdas coinciden (todos rombos o todos corazones),
+      debe saltar una alerta con el mensaje <strong>"FULL"</strong>.
+    </p>
+    <!-- Tres celdas con estado inicial 0 -->
+    <div class="celda" data-s="0"></div>
+    <div class="celda" data-s="0"></div>
+    <div class="celda" data-s="0"></div>
+    <!-- Contadores -->
+    <p>🔷: <span id="d1">0</span>   ❤️: <span id="h1">0</span></p>
+
+    <script>
+      // Seleccionamos las 3 celdas
+      const celdas1 = document.querySelectorAll('#e1 .celda');
+      celdas1.forEach(c => c.onclick = function() {
+        // 1) Leer estado actual (data-s)
+        let s = parseInt(this.dataset.s, 10);
+        // 2) Avanzar estado y ciclar 0→1→2→0
+        s = (s + 1) % 3;
+        this.dataset.s = s;
+        // 3) Mostrar símbolo según estado
+        this.textContent = s === 1 ? '🔷' : s === 2 ? '❤️' : '';
+        // 4) Contar rombos y corazones
+        let diam = 0, heart = 0;
+        celdas1.forEach(x => {
+          if (x.dataset.s === '1') diam++;
+          if (x.dataset.s === '2') heart++;
+        });
+        document.getElementById('d1').textContent = diam;
+        document.getElementById('h1').textContent = heart;
+        // 5) Alerta si los tres son iguales
+        if (diam === 3 || heart === 3) alert('FULL');
+      });
+    </script>
+  </div>
+
+  <!-- EJERCICIO 2: Bombillas par/impar -->
+  <div id="e2" class="ejercicio">
+    <h2>Ejercicio 2 (3 puntos)</h2>
+    <p class="enunciado">
+      Hay dos "bombillas" (círculos). Conforme el usuario escribe en el campo:
+      - Si la longitud del texto es <strong>par</strong> (0,2,4...), la bombilla
+        izquierda se <strong>enciende</strong> (amarilla) y la derecha se
+        <strong>apaga</strong> (gris).
+      - Si la longitud es <strong>impar</strong>, al revés.
+      El estado debe actualizarse en <em>tiempo real</em> mientras escribe.
+    </p>
+    <div id="b1" class="bombilla" style="background:yellow"></div>
+    <div id="b2" class="bombilla" style="background:gray"></div>
+    <input id="i2" placeholder="Escribe texto">
+
+    <script>
+      const b1 = document.getElementById('b1');
+      const b2 = document.getElementById('b2');
+      const i2 = document.getElementById('i2');
+      i2.oninput = function() {
+        // 1) Leer longitud del texto ingresado
+        const len = this.value.length;
+        // 2) If par → b1 amarillo, b2 gris; si impar → b2 amarillo, b1 gris
+        if (len % 2 === 0) {
+          b1.style.background = 'yellow';
+          b2.style.background = 'gray';
+        } else {
+          b1.style.background = 'gray';
+          b2.style.background = 'yellow';
+        }
+      };
+    </script>
+  </div>
+
+  <!-- EJERCICIO 3: Contador regresivo -->
+  <div id="e3" class="ejercicio">
+    <h2>Ejercicio 3 (3 puntos)</h2>
+    <p class="enunciado">
+      El cuadrado comienza en 0 y color rojo (por defecto). El usuario introduce
+      un número mayor que 1 en el campo y pulsa "OK". Entonces:
+      1. El número aparece dentro del cuadrado y cambia a color verde.
+      2. Cada vez que se pulsa el cuadrado, el valor disminuye en 1.
+      3. Cuando llega a 0, el cuadrado vuelve a color rojo y ya no decrece más.
+    </p>
+    <input id="i3" type="number" placeholder="Número >1">
+    <button id="ok3">OK</button>
+    <div id="contador">0</div>
+
+    <script>
+      const ok3 = document.getElementById('ok3');
+      const i3  = document.getElementById('i3');
+      const c3  = document.getElementById('contador');
+
+      ok3.onclick = function() {
+        // 1) Leer valor ingresado
+        const n = parseInt(i3.value, 10);
+        // 2) Si n > 1 → mostrar y poner fondo verde; sino → alerta
+        if (n > 1) {
+          c3.textContent = n;
+          c3.style.background = 'lightgreen';
+        } else {
+          alert('Introduce un número mayor que 1');
+        }
+      };
+
+      c3.onclick = function() {
+        // 3) Leer valor actual y decrementar si > 0
+        let m = parseInt(this.textContent, 10);
+        if (m > 0) {
+          m--;
+          this.textContent = m;
+          // 4) Si llega a 0 → fondo rojo
+          if (m === 0) this.style.background = 'tomato';
+        }
+      };
+    </script>
+  </div>
+
+</body>
+</html>
