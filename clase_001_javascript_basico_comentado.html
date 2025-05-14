@@ -1,0 +1,381 @@
+<!-- 
+  ==========================================================
+  CLASE 001 - INTRODUCCIÓN A JAVASCRIPT COMPLETO PARA PRINCIPIANTES
+  ==========================================================
+  Autor: Joaquín Rodríguez Llanes (adaptado)
+  Destinataria: Cinthia
+  Descripción: Clase 001 de JavaScript muy básica, paso a paso.
+  Incluye teoría comentada, ejemplos funcionales y ejercicios prácticos.
+  Cada sección explica la teoría, muestra el código con comentarios línea a línea
+  y finalmente propone un ejercicio para que lo realices.
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clase 001 - Introducción a JavaScript Completo</title>
+  <style>
+    /* Estilos para la página */
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 
+    📖 INTRODUCCIÓN GENERAL A JAVASCRIPT (TEORÍA)
+    --------------------------------------------------------
+    JavaScript es uno de los tres pilares del desarrollo web, junto con HTML y CSS.
+    - HTML: Estructura el contenido de la página.
+    - CSS: Define el diseño y estilo visual.
+    - JavaScript: Añade interactividad y comportamiento dinámico.
+    
+    Con JavaScript puedes:
+      • Mostrar mensajes y notificaciones.
+      • Pedir información al usuario.
+      • Tomar decisiones mediante condicionales.
+      • Modificar y manipular el contenido HTML (DOM).
+      • Realizar cálculos y operaciones con variables y funciones.
+    
+    Esta teoría te servirá de base para entender cada uno de los ejercicios que verás a continuación.
+  -->
+  <section>
+    <h2>📘 Introducción General a JavaScript</h2>
+    <p>Revisa el comentario anterior para entender la base teórica de JavaScript.</p>
+    <pre>
+/* 
+ * JavaScript es un lenguaje de programación que permite:
+ *   - Interactividad: Responder a acciones del usuario.
+ *   - Manipulación del DOM: Modificar el contenido HTML.
+ *   - Lógica: Realizar cálculos, condicionales y bucles.
+ * 
+ * A lo largo de esta clase aprenderás conceptos básicos como:
+ *   1. Mostrar mensajes con alert().
+ *   2. Uso de variables (let y const).
+ *   3. Condicionales (if/else).
+ *   4. Manipulación de elementos HTML.
+ *   5. Funciones y el paso de parámetros.
+ *
+ * Estos fundamentos te permitirán empezar a construir aplicaciones web dinámicas.
+ */
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 1: Mostrar mensaje con alert() -->
+  <section>
+    <h2>1. Mostrar mensaje con alert()</h2>
+    <!-- 
+      Teoría:
+      La función alert() muestra una ventana emergente en el navegador con un mensaje.
+      Se utiliza para notificar al usuario o para depurar el código.
+    -->
+    <button onclick="mostrarAlerta()">Mostrar saludo</button>
+    <script>
+      // Función para mostrar un mensaje de saludo utilizando alert()
+      function mostrarAlerta() {
+        // alert() muestra una ventana emergente con el mensaje especificado.
+        alert("Hola Cinthia, este es tu primer mensaje desde JavaScript! 🌟");
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea una función llamada <code>mostrarDespedida()</code> que muestre el mensaje "Hasta luego Cinthia!".
+    </p>
+    <pre>
+/* Ejercicio:
+function mostrarDespedida() {
+  // Utiliza alert() para mostrar "Hasta luego Cinthia!"
+}
+*/
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 2: Variables -->
+  <section>
+    <h2>2. Variables</h2>
+    <!-- 
+      Teoría:
+      Las variables son espacios en la memoria para almacenar datos.
+      En JavaScript se usan:
+        - let: para declarar variables que pueden cambiar su valor.
+        - const: para declarar constantes cuyo valor no cambiará.
+    -->
+    <button onclick="verVariables()">Mostrar variables</button>
+    <script>
+      // Función que demuestra el uso de variables
+      function verVariables() {
+        // Declaramos una variable "nombre" con el valor "Cinthia"
+         nombre = "Cinthia";
+        // Declaramos una variable "edad" con el valor 30
+        let edad = 30;
+        // Usamos alert() para mostrar un mensaje que combina ambas variables
+        alert("Tu nombre es " + nombre + " y tienes " + edad + " años.");
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea una función llamada <code>verCiudad()</code> que guarde una ciudad en una variable y la muestre en un mensaje.
+    </p>
+    <pre>
+/* Ejercicio:
+function verCiudad() {
+  // Declara una variable para la ciudad, por ejemplo: let ciudad = "Madrid";
+  // Utiliza alert() para mostrar el mensaje "La ciudad es: [ciudad]"
+}
+*/
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 3: Condicionales (if / else) -->
+  <section>
+    <h2>3. Condicionales (if / else)</h2>
+    <!-- 
+      Teoría:
+      Los condicionales permiten ejecutar diferentes bloques de código según se cumpla una condición.
+      La sintaxis básica es:
+      
+      if (condición) {
+         // Código si la condición es verdadera
+      } else {
+         // Código si la condición es falsa
+      }
+    -->
+    <button onclick="evaluarEdad()">Comprobar edad</button>
+    <script>
+      // Función para evaluar la edad del usuario
+      function evaluarEdad() {
+        // Solicitamos al usuario que ingrese su edad usando prompt()
+        let edad = prompt("¿Cuántos años tienes?");
+        // Verificamos la edad y mostramos un mensaje acorde
+        if (edad >= 65) {
+          // Si la edad es 65 o mayor, se considera jubilado
+          alert("Eres una persona jubilada.");
+        } else if (edad >= 18) {
+          // Si la edad es 18 o mayor pero menor de 65, es mayor de edad
+          alert("Eres mayor de edad.");
+        } else {
+          // Si la edad es menor a 18, es menor de edad
+          alert("Aún eres menor de edad.");
+        }
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <ul>
+      <li>
+        <strong>Ejercicio 1:</strong> Crea una función <code>evaluarNota()</code> que, al ingresar una nota, muestre "Aprobado" si es igual o superior a 5 y "Suspenso" si es menor.
+      </li>
+      <li>
+        <strong>Ejercicio 2:</strong> Modifica la función para que, además, incluya la edad exacta del usuario en el mensaje.
+      </li>
+      <li>
+        <strong>Ejercicio 3:</strong> Si la edad es menor que 3, muestra "Eres un bebé 🍼".
+      </li>
+    </ul>
+    <pre>
+/* Ejercicio:
+function evaluarNota() {
+  // Pide al usuario que ingrese una nota mediante prompt()
+  // Evalúa la nota y muestra "Aprobado" o "Suspenso" utilizando alert()
+}
+*/
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 4: Cambiar contenido HTML -->
+  <section>
+    <h2>4. Modificar HTML desde JavaScript</h2>
+    <!-- 
+      Teoría:
+      Con JavaScript podemos acceder y modificar elementos HTML.
+      Usamos document.getElementById("id") para seleccionar un elemento específico y cambiar su contenido con innerText o innerHTML.
+    -->
+    <p id="parrafo">Este texto se puede cambiar con JavaScript.</p>
+    <button onclick="cambiarTexto()">Cambiar texto</button>
+    <script>
+      // Función para cambiar el contenido del párrafo con id "parrafo"
+      function cambiarTexto() {
+        // document.getElementById("parrafo") selecciona el elemento y .innerText cambia su texto interno.
+        document.getElementById("parrafo").innerText = "¡Texto actualizado correctamente!";
+        document.getElementById
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea otro párrafo con el ID <code>mensaje</code> y un botón que lo cambie a "Hola desde JS!".
+    </p>
+    <pre>
+/* Ejercicio:
+function cambiarMensaje() {
+  // Accede al elemento con id "mensaje" y actualiza su contenido utilizando innerText
+}
+*/
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 5: Funciones con parámetros -->
+  <section>
+    <h2>5. Funciones con parámetros</h2>
+    <!-- 
+      Teoría:
+      Las funciones agrupan instrucciones que realizan una tarea específica.
+      Pueden recibir parámetros y devolver un resultado usando la palabra clave return.
+      Esto permite reutilizar el código y hacerlo más modular.
+    -->
+    <button onclick="calcularSuma()">Calcular 4 + 6</button>
+    <script>
+      // Función que suma dos números y devuelve el resultado
+      function sumar(a, b) {
+        return a + b; // Devuelve la suma de a y b
+      }
+      // Función que utiliza la función sumar para calcular y mostrar el resultado de 4 + 6
+      function calcularSuma() {
+        // Llamada a la función sumar con los parámetros 4 y 6
+        let resultado = sumar(4, 6);
+        // Muestra el resultado en una ventana emergente
+        alert("El resultado es: " + resultado);
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea una función <code>multiplicar(a, b)</code> que reciba dos números, calcule su multiplicación y muestre el resultado.
+    </p>
+    <pre>
+/* Ejercicio:
+function multiplicar(a, b) {
+  // Calcula la multiplicación de a y b
+  // Muestra el resultado utilizando alert()
+}
+*/
+    </pre>
+  </section>
+
+  <!-- SECCIÓN 6: Primer ejercicio completo -->
+  <section>
+    <h2>6. 📝 Primer ejercicio completo</h2>
+    <!-- 
+      Teoría:
+      En esta sección combinamos todo lo aprendido:
+        - Obtener datos del usuario con prompt()
+        - Guardar los datos en variables
+        - Mostrar un mensaje personalizado con alert()
+      
+      Este ejercicio es la base para cualquier interacción completa con el usuario.
+    -->
+    <button onclick="miEjercicio()">Ejecutar ejercicio</button>
+    <script>
+      // Función que integra prompt, variables y alert para interactuar con el usuario
+      function miEjercicio() {
+        // Pedimos el nombre del usuario
+        let nombre = prompt("¿Cómo te llamas?");
+        // Pedimos la edad del usuario
+        let edad = prompt("¿Cuántos años tienes?");
+        // Mostramos un mensaje personalizado combinando los datos ingresados
+        alert("Hola " + nombre + ", tienes " + edad + " años y estás aprendiendo JavaScript con Joaquín. 🚀");
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea una función que pregunte al usuario cuál es su color favorito y muestre: "Tu color favorito es [color]".
+    </p>
+    <pre>
+/* Ejercicio:
+function colorFavorito() {
+  // Pide al usuario su color favorito mediante prompt()
+  // Muestra el mensaje "Tu color favorito es [color]" utilizando alert()
+}
+*/
+    </pre>
+  </section>
+
+  <!-- EJERCICIO COMPLETO INTEGRADOR -->
+  <section>
+    <h2>7. 🏆 Ejercicio completo integrador</h2>
+    <!-- 
+      Teoría:
+      Este ejercicio integrador combina todos los conceptos aprendidos:
+        • Uso de prompt() para solicitar datos.
+        • Almacenamiento de datos en variables.
+        • Condicionales para tomar decisiones.
+        • Manipulación del DOM para mostrar contenido en la página.
+        • Funciones para estructurar y reutilizar el código.
+      
+      El objetivo es crear una pequeña aplicación interactiva que solicite información y muestre un mensaje personalizado,
+      tanto en una ventana emergente como en la página.
+    -->
+    <button onclick="ejercicioIntegrador()">Ejecutar ejercicio integrador</button>
+    <script>
+      // Función que integra todos los conceptos aprendidos en la clase
+      function ejercicioIntegrador() {
+        // Solicitamos datos al usuario
+        let nombre = prompt("¿Cómo te llamas?");
+        let edad = prompt("¿Cuántos años tienes?");
+        let ciudad = prompt("¿En qué ciudad vives?");
+        let color = prompt("¿Cuál es tu color favorito?");
+        
+        // Creamos un mensaje personalizado combinando todos los datos
+        let mensaje = "Hola " + nombre + ", tienes " + edad + " años, vives en " + ciudad +
+                      " y tu color favorito es " + color + ". ¡Bienvenido a la clase de JavaScript!";
+        
+        // Mostramos el mensaje en una ventana emergente
+        alert(mensaje);
+        
+        // También añadimos el mensaje a la página creando un nuevo párrafo
+        let nuevoParrafo = document.createElement("p");
+        nuevoParrafo.innerText = mensaje;
+        document.body.appendChild(nuevoParrafo);
+      }
+    </script>
+    <h3>🧪 Tu turno (Práctica)</h3>
+    <p>
+      Ejercicio: Crea tu propia aplicación integradora. Debe:
+      <br>- Solicitar al usuario al menos 4 datos (por ejemplo: nombre, edad, ciudad, hobby).
+      <br>- Crear un mensaje personalizado.
+      <br>- Mostrar el mensaje con alert() y modificar un elemento HTML para mostrarlo en la página.
+    </p>
+    <pre>
+/* Ejercicio:
+function miAplicacionCompleta() {
+  // Pide al usuario por lo menos 4 datos (ej. nombre, edad, ciudad, hobby)
+  // Crea un mensaje personalizado combinando los datos
+  // Muestra el mensaje utilizando alert()
+  // Añade el mensaje a la página modificando el DOM
+}
+*/
+    </pre>
+  </section>
+
+</body>
+</html>

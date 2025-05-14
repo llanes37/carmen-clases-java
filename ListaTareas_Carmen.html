@@ -1,0 +1,136 @@
+
+<!-- 
+! ==========================================================
+! PROYECTO BÁSICO – APP: LISTA DE TAREAS (Versión sencilla)
+! ==========================================================
+! Autor: Joaquín Rodríguez Llanes
+! Destinataria: Cinthia
+! Descripción: Proyecto básico con HTML, JavaScript y Bootstrap.
+! Objetivo: Practicar cómo:
+! - Agregar tareas nuevas
+! - Marcar tareas como hechas
+! - Eliminar tareas
+! - Validar que el campo no esté vacío
+
+! ----------------------------------------------------------------
+! 🔹 ESTRUCTURA Y FUNCIONES DEL PROYECTO
+! ----------------------------------------------------------------
+1️⃣ Estructura HTML:
+   - Título principal <h2> con el texto: "Mi lista de tareas".
+   - Formulario con:
+       • Campo de texto (obligatorio) para escribir la tarea
+       • Botón "Agregar tarea"
+   - Sección donde se muestran todas las tareas con botones.
+
+2️⃣ Funcionalidades con JavaScript:
+   - Validar que el campo no esté vacío.
+   - Agregar tareas a un array y mostrarlas.
+   - Marcar tareas como hechas (tacharlas visualmente).
+   - Eliminar tareas con botón.
+
+3️⃣ Estilos CSS + Bootstrap:
+   - Bootstrap 5 para los botones y diseño general.
+   - Estilo adicional para mostrar tareas completadas (tachado).
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi lista de tareas</title>
+
+  <!-- Cargamos Bootstrap desde CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Estilo personalizado -->
+  <style>
+    body {
+      padding: 30px;
+      background-color: #f2f2f2;
+    }
+    .tarea-hecha {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+
+<body class="container">
+
+  <!-- TÍTULO DE LA APLICACIÓN -->
+  <h2 class="text-center mb-4">📝 Mi lista de tareas</h2>
+
+  <!-- FORMULARIO PARA AÑADIR TAREAS -->
+  <form id="formularioTarea" class="mb-4">
+    <div class="input-group">
+      <!-- Campo de texto para escribir la tarea -->
+      <input type="text" class="form-control" id="nuevaTarea" placeholder="Escribe tu tarea" required />
+      <!-- Botón para añadir -->
+      <button class="btn btn-success" type="submit">Agregar tarea</button>
+    </div>
+  </form>
+
+  <!-- LISTA DE TAREAS -->
+  <ul id="listaTareas" class="list-group"></ul>
+
+  <!-- CÓDIGO JAVASCRIPT -->
+  <script>
+    let tareas = [];
+    const formulario = document.getElementById("formularioTarea");
+    const inputTarea = document.getElementById("nuevaTarea");
+    const listaTareas = document.getElementById("listaTareas");
+
+    formulario.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const texto = inputTarea.value.trim();
+      if (!texto) {
+        alert("Por favor, escribe una tarea.");
+        return;
+      }
+      tareas.push({ texto: texto, hecha: false });
+      inputTarea.value = "";
+      mostrarTareas();
+    });
+
+    function mostrarTareas() {
+      listaTareas.innerHTML = "";
+      tareas.forEach((tarea, index) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        if (tarea.hecha) {
+          li.classList.add("tarea-hecha");
+        }
+        li.innerHTML = `
+          ${tarea.texto}
+          <div>
+            <button class="btn btn-sm btn-outline-success me-2" onclick="marcarHecha(${index})">✓</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarTarea(${index})">🗑</button>
+          </div>
+        `;
+        listaTareas.appendChild(li);
+      });
+    }
+
+    function marcarHecha(index) {
+      tareas[index].hecha = !tareas[index].hecha;
+      mostrarTareas();
+    }
+
+    function eliminarTarea(index) {
+      tareas.splice(index, 1);
+      mostrarTareas();
+    }
+  </script>
+
+  <!-- EJERCICIO EXTRA PARA CINTHIA -->
+  <section class="mt-5">
+    <h5>🧪 Ejercicio para ti, Cinthia</h5>
+    <ul>
+      <li>// TODO: Muestra un contador debajo con el número total de tareas.</li>
+      <li>// TODO: Si el texto tiene menos de 3 letras, no dejes agregarlo y muestra un mensaje de error.</li>
+    </ul>
+  </section>
+
+</body>
+</html>
